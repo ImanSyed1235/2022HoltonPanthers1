@@ -1,0 +1,13 @@
+#include <kipr/wombat.h>
+ 
+int main()
+{
+    create_connect();
+    create_drive_direct(-700, -700);
+    msleep(900);
+    create_drive_direct(300, 300);
+        msleep(900);
+    create_stop();
+    create_disconnect();
+    return(0);
+}
