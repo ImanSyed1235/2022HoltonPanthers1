@@ -5,14 +5,14 @@ left motor 2, black battery-side; right motor 0, red battery-side */
 int main()
 {
 	enable_servos();
-    set_servo_position(0, 0); // opens arn
+    set_servo_position(0, 0); // opens arm
     msleep(1000);
     mrp(0, 200, 350); // moves forward
     mrp(2, 200, 350);
     mrp(2, 200, 2000); // turns to right
     bmd(2);
     set_servo_position(0, 1000); // closes arm to avoid kiddie rings
-    mrp(2, 200, 3000); // continues turn to right
+    mrp(2, 400, 3000); // continues turn to right
     bmd(2);
     set_servo_position(0, 0); // opens arm to release pom poms
     msleep(1000); 
@@ -23,10 +23,16 @@ int main()
     set_servo_position(0, 1000); // closes arm
     mrp(0, 100, 250); // rotates to straighten
     bmd(0);
-    mrp(0, 600, 4000); // moves forward to catch other pom poms, CAN MAKE FASTER/LONGER
-    mrp(2, 600, 4000);
+    mrp(0, 700, 13000); // moves forward to catch other pom poms, CAN MAKE FASTER/LONGER
+    mrp(2, 1000, 14000);
     bmd(0);
     bmd(2);
-   
+    mrp(2, 1000, 300);
+    mrp(0, 500, 300);
+    bmd(0);
+    bmd(2);
+    // still need robot to turn around to catch pom poms and return to the box
     return 0;
 }
+
+
