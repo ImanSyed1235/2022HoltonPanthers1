@@ -1,0 +1,32 @@
+#include <kipr/wombat.h>
+/* looking from wheel-side (back), battery in back. 
+left motor 2, black battery-side; right motor 0, red battery-side */
+
+int main()
+{
+	enable_servos();
+    set_servo_position(0, 0); // opens arn
+    msleep(1000);
+    mrp(0, 200, 350); // moves forward
+    mrp(2, 200, 350);
+    mrp(2, 200, 2000); // turns to right
+    bmd(2);
+    set_servo_position(0, 1000); // closes arm to avoid kiddie rings
+    mrp(2, 200, 3000); // continues turn to right
+    bmd(2);
+    set_servo_position(0, 0); // opens arm to release pom poms
+    msleep(1000); 
+    ao(); // idk if this is necessary but it works wiht it so 
+    motor(0, -50); // moves robot backwards
+    motor(2, -50);
+    msleep(3800); // moves robot backwards
+    set_servo_position(0, 1000); // closes arm
+    mrp(0, 100, 250); // rotates to straighten
+    bmd(0);
+    mrp(0, 600, 4000); // moves forward to catch other pom poms, CAN MAKE FASTER/LONGER
+    mrp(2, 600, 4000);
+    bmd(0);
+    bmd(2);
+   
+    return 0;
+}
