@@ -1,12 +1,49 @@
 #include <kipr/wombat.h>
- 
+
+
 int main()
 {
+    
     create_connect();
-    create_drive_direct(-700, -700);
-    msleep(900);
-    create_drive_direct(300, 300);
-        msleep(900);
+    wait_for_light(2);
+    printf("I can see the light! \n");
+    shut_down_in(118);
+    
+    int v;
+    create_drive_direct(3000, 3200); //moves back from starting box
+    msleep(1700);
+    	v = get_create_total_angle();
+    	printf("Angle after moving out of starting box is %d\n", v);
+    	set_create_total_angle(0);
+    create_drive_direct(0, -600); //turns right
+    msleep(1000);
+    	v = get_create_total_angle();
+    	printf("Angle after turning right is %d\n", v);
+    	set_create_total_angle(0);
+    create_drive_direct(-200, -200); //moves a small distance to turn left
+    msleep(700);
+    create_drive_direct(-200, 200); //turn left
+    msleep(980);
+    	v = get_create_total_angle();
+    	printf("Angle after turning left is %d\n", v);
+    	set_create_total_angle(0);
+    
+    create_stop();
+    msleep(3000);
+    create_drive_direct(-400, -400); //moves forward knocking rings into starting box
+    msleep(1100);
+    	v = get_create_total_angle();
+    	printf("Angle while moving forward is %d\n", v);
+    	set_create_total_angle(0);
+    create_drive_direct(110, 110); //drags ring holder back
+    msleep(3800);
+    	v = get_create_total_angle();
+    	printf("Angle when dragging rings back is %d\n", v);
+    	set_create_total_angle(0);
+    create_drive_direct(-200, 200);
+    msleep(1000);
+    create_drive_direct(-130,-130);
+    msleep(1000);
     create_stop();
     create_disconnect();
     return(0);
