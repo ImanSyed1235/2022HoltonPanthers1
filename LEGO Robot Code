@@ -4,62 +4,98 @@ left motor 2, black battery-side; right motor 0, red battery-side */
 
 int main()
 {
- //   wait_for_light(2);
- //   printf("I can see the light! \n");
- //   shut_down_in(118);
+    wait_for_light(2);
+    printf("I can see the light! \n");
+    shut_down_in(118);
+    int servo = 1300; //defines servo values for convenience 
+
     enable_servos();
     set_servo_position(0, 0); // opens arm
     msleep(1000);
+
     mrp(0, 800, 800); // moves forward
     mrp(2, 800, 900);
+
     mrp(2, 200, 1500); // turns to right
     bmd(2);
     bmd(0);
-     mrp(0, 200, 450); // moves forward
-     mrp(2, 200, 450); // moves forward
+
+     mrp(0, 200, 500); // moves forward
+     mrp(2, 200, 500); // moves forward
     msleep(1000);
     bmd(0);
     bmd(2);
-    set_servo_position(0, 1000); // closes arm
+
+    set_servo_position(0, servo); // closes arm
     //msleep(1000);
      mrp(0, 200, 1500); // turns to right
     msleep(500);
     bmd(0);
+
     motor(0, -25); // moves robot backwards
     motor(2, -25);
     msleep(6000); // moves robot backwards
+
     set_servo_position(0, 0); // opens arm to release pom poms
     motor(0, -30); // moves robot backwards
     motor(2, -30);
-    msleep(2800); // moves robot backwards
-    set_servo_position(0, 1000);
+    msleep(3000); // moves robot backwards
+    set_servo_position(0, servo);
     msleep(1000);
+
     mrp(2, 520, 2700); // turns to right
     mrp(0, 20, 2700);
     msleep(5000);
     //bmd(2);
     //bmd(0);
-    mrp(0, 705, 13000); // moves forward
+
+    mrp(0, 705, 13000); // moves forward going down to transporter
     mrp(2, 700, 13000); // moves forward
     msleep(15000);
-	bmd(2);
+    bmd(2);
     bmd(0); 
+
     motor(2, -20); // turns to left
     msleep(6300);
+
+    motor(2, -10); // moves backward to realign against pvc pipe
+    motor(0, -10);
+    msleep(1000);
+
     enable_servos(); // COMMENT OUT LATER
-	set_servo_position(0, 0); // opens arm
+    set_servo_position(0, 0); // opens arm
     msleep(1000);
     mrp(0, 700, 5500); // moves forward
     mrp(2, 700, 5500); // moves forward
     msleep(6000);
     bmd(2);
     bmd(0);
+
+    set_servo_position(0, servo); // closes arm
+    msleep(1000);
     motor(2, -20); // turns left 
     msleep(6700);
-	mrp(0, 700, 6000); // moves forward
-    mrp(2, 720, 6000); // moves forward
+    set_servo_position(0, 0); // reopens arm
+    msleep(1000);
+
+    mrp(0, 700, 7000); // moves forward
+    mrp(2, 720, 7000); // moves forward
+    msleep(6000);
     bmd(0);
     bmd(2);
+    mrp(0, 700, 6000); //moves towards starting box
+    mrp(2, 700, 6000); //moves towards starting box
+    msleep(6000);
+    bmd(0);
+    bmd(2);
+
+    motor(2, -20); // turns left into starting box
+    msleep(6700);
+/*  mrp(0, 700, 1200);
+    mrp(2, 720, 1200);
+    bmd(0);
+    bmd(2);
+    msleep(4000); */
     ao();
     //set_servo_position(0, 0); // opens arm to release pom poms
     //msleep(1000); 
